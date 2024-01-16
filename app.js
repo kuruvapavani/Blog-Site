@@ -1,4 +1,3 @@
-//jshint esversion:6
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -51,6 +50,11 @@ app.get("/compose",function(req,res){
   res.render(__dirname + "/views/compose.ejs",{homepage : contactContent });
 })
 
+let port = process.env.PORT;
+if(port == null || port == ""){
+  port = 3000;
+}
+
 app.post("/",function(req,res){
   const postTitle = req.body.title;
   const postContent = req.body.content;
@@ -61,6 +65,7 @@ app.post("/",function(req,res){
   newPost.save();
   res.redirect("/");
 });
+
 
 
 app.get("/posts/:testing",function(req,res){
@@ -75,7 +80,6 @@ app.get("/posts/:testing",function(req,res){
 })
 
 
-
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(port, function() {
+  console.log("Server started on port " + port);
 });
