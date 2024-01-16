@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 var _ = require("lodash");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/postsDB");
+const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/postsDB";
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const postSchema = {
   title : String,
