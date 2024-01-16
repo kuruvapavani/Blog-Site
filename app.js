@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 var _ = require("lodash");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/postsDB");
+mongoose.connect("mongodb://127.0.0.1:27017/postsDB");
 
 const postSchema = {
   title : String,
