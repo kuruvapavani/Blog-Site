@@ -4,8 +4,16 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 var _ = require("lodash");
 const mongoose = require("mongoose");
-const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/postsDB";
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Use the new URL parser and remove deprecated options
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/postsDB", {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Rest of your code...
+
 
 const postSchema = {
   title : String,
